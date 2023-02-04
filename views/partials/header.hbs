@@ -1,0 +1,21 @@
+<header>
+	<nav>
+		<ul>
+		  <li><a href=”/cms/munu”>Menu</a></li>
+		  <li><a href=”#”>ABOUT</a></li>
+		  <li><a href=”#”>MENU1</a></li>
+		  <li><a href=”#”>MENU2</a></li>
+		  <li> <a href=”/cms”>Log out</a></li>
+		</ul>
+	</nav>
+	<script>
+		function signout() {
+			sessionStorage.clear();
+			window.location.href='/cms';
+		}
+		if (sessionStorage.getItem("session") == null) {
+			alert( "Please sign in" );
+			window.location.href='/cms';
+        }
+
+</header>
