@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 var hbs = require('hbs');
 var fs = require('fs');
+var path = require('path');
 
 //handlebars setting
 hbs.registerPartials(__dirname + '/views/partials');
@@ -31,6 +32,40 @@ app.get('/cms/menu', (req, res) => {
 		title: "NEW OFDM",
 		descript: "happy new year!"
 	});
+});
+
+app.get('/cms/read', (req, res) => {
+	fs.readFile(__dirname + '/data/test.txt', 'utf8', function(err, data) {
+		console.log(data);
+		res.render('login.hbs', {
+			title: data,
+			descript: "happy new year!"
+		});
+ 
+	})
+	
+});
+
+app.get('/cms/add', (req, res) => {
+	fs.appendFile (__dirname + '/data/test.txt', ',add text', function(err) {
+		res.render('login.hbs', {
+			title: "APPEND TEXT",
+			descript: "happy new year!"
+		});
+ 
+	})
+	
+});
+
+app.get('/cms/write', (req, res) => {
+	fs.appendFile (__dirname + '/data/test2.txt', 'new text', function(err) {
+		res.render('login.hbs', {
+			title: "WRITE NEW FILE",
+			descript: "happy new year!"
+		});
+ 
+	})
+	
 });
 
 
